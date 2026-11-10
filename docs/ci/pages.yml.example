@@ -21,8 +21,8 @@ jobs:
       VITE_FIREBASE_APP_ID: '1:478304057892:web:d4f8164dcd6692ece076b1'
       VITE_FIREBASE_STORAGE_BUCKET: 'surat-saman.firebasestorage.app'
       VITE_FIREBASE_MESSAGING_SENDER_ID: '478304057892'
-      VITE_RECAPTCHA_SITE_KEY: '6LdFkRkuAAAAALHt9qt8DjNOevixCeNwd9b0jVNS'
-      VITE_APPCHECK_PROVIDER: v3
+      VITE_RECAPTCHA_SITE_KEY: '6LcDkBkuAAAAAGnUIqCTzo8g0rNXey7YHtSgLvxW'
+      VITE_APPCHECK_PROVIDER: enterprise
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
