@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Surat Saman — faham surat rasmi</title>
+  <meta name="description" content="Snap an official Malaysian letter and get a plain-language summary, deadline and next steps. Private, on-device AI first." />
+  <meta name="theme-color" content="#0b2a5b" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <script type="module" crossorigin src="./assets/index-ze_EEngM.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-ClnknA5Z.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><img src="./icon.svg" alt="" width="36" height="36"><div><h1>Surat Saman</h1><p data-i18n="tagline"></p></div></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ms">BM</button><button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="offline" class="note info" hidden data-i18n="offline"></div>
+    <div id="device" class="note"></div>
+
+    <section class="panel">
+      <div class="capture">
+        <label class="btn primary big">📷 <span data-i18n="snap"></span>
+          <input id="camera" type="file" accept="image/*" capture="environment" hidden></label>
+        <label class="btn ghost big">🖼 <span data-i18n="upload"></span>
+          <input id="file" type="file" accept="image/png,image/jpeg,image/webp,image/heic" hidden></label>
+      </div>
+      <div id="preview" class="preview" hidden></div>
+      <p class="or" data-i18n="or"></p>
+      <textarea id="text" rows="5"></textarea>
+      <p class="muted small" data-i18n="samples"></p>
+      <div id="samples" class="chips"></div>
+      <button id="analyze" type="button" class="btn primary wide"></button>
+      <button type="button" class="btn link wide" data-action="cloud">☁ <span data-i18n="useCloud"></span></button>
+    </section>
+
+    <section id="result" aria-live="polite" hidden></section>
+  </main>
+
+  <footer><span data-i18n="builtWith"></span> · Built with help from Hark (AI assistant)</footer>
+
+  <dialog id="sheet"><div id="sheet-body"></div></dialog>
+</body>
+</html>
