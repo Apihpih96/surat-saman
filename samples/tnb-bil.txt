@@ -1,0 +1,23 @@
+*** CONTOH / SAMPLE - FIKTIF / FICTITIOUS ***
+TENAGA NASIONAL BERHAD (CONTOH)
+BIL ELEKTRIK - NOTIS TUNGGAKAN
+
+No. Akaun: 220012345678
+No. Invois: INV-2026-10-55501
+Tarikh Bil: 01/11/2026
+
+Kepada: ALI BIN CONTOH
+No. K/P: 900101145678
+Tel: 0123456789
+
+Tempoh bil: 01/10/2026 - 31/10/2026
+Penggunaan: 412 kWj
+Caj semasa: RM98.40
+Tunggakan terdahulu: RM187.60
+JUMLAH PERLU DIBAYAR: RM286.00
+
+AMARAN: Akaun anda mempunyai tunggakan.
+Sila jelaskan jumlah penuh sebelum 17/11/2026
+untuk mengelakkan pemotongan bekalan elektrik.
+Caj penyambungan semula RM10.00 akan dikenakan.
+Bayar melalui aplikasi myTNB, FPX atau kedai Kedai Tenaga.

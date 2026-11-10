@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Public Firebase web client config (not secrets; protected by App Check).
+    env:
+      VITE_FIREBASE_API_KEY: 'AIzaSyDbM5UpmCysrdsVWrhmfvDWY1bgVGJtuO0'
+      VITE_FIREBASE_AUTH_DOMAIN: 'surat-saman.firebaseapp.com'
+      VITE_FIREBASE_PROJECT_ID: 'surat-saman'
+      VITE_FIREBASE_APP_ID: '1:478304057892:web:d4f8164dcd6692ece076b1'
+      VITE_FIREBASE_STORAGE_BUCKET: 'surat-saman.firebasestorage.app'
+      VITE_FIREBASE_MESSAGING_SENDER_ID: '478304057892'
+      VITE_RECAPTCHA_SITE_KEY: '6LdFkRkuAAAAALHt9qt8DjNOevixCeNwd9b0jVNS'
+      VITE_APPCHECK_PROVIDER: v3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npx vitest run
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: dist }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: '${{ steps.d.outputs.page_url }}' }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
