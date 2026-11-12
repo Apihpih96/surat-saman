@@ -46,3 +46,18 @@ describe('parseAnalysis', () => {
     expect(() => parseAnalysis('[1,2]', 'en', NOW)).toThrow(ParseError);
   });
 });
+
+describe('result polish', () => {
+  const base = { letter_type: 'tax notice', sender: 'LHDN', summary: 'S', deadline: '', urgency: 'low', language: 'en', next_steps: [] };
+  it('capitalises the letter type', () => {
+    expect(parseAnalysis(JSON.stringify({ ...base, key_facts: [] }), 'en').letter_type).toBe('Tax notice');
+  });
+  it('hides key facts that are only redaction placeholders', () => {
+    const r = parseAnalysis(JSON.stringify({ ...base, key_facts: [
+      { label: 'IC Number', value: '[IC]' }, { label: 'Phone', value: '[PHONE]' },
+      { label: 'Contact', value: '[PHONE], [ACCOUNT]' }, { label: 'Amount', value: 'RM512.00' },
+      { label: 'Pay to', value: 'Account [ACCOUNT] at Maybank' },
+    ] }), 'en');
+    expect(r.key_facts.map((f) => f.label)).toEqual(['Amount', 'Pay to']);
+  });
+});
