@@ -43,7 +43,18 @@ function toFacts(v: unknown): KeyFact[] {
       return fact.label || fact.value ? [fact] : [];
     }
     return [];
-  });
+  }).filter((f) => !isOnlyRedacted(f.value));
+}
+
+/** True when a value is nothing but redaction placeholders like "[IC]" (the model echoing hidden numbers). */
+export function isOnlyRedacted(value: string): boolean {
+  const rest = value.replace(/\[(?:IC|PHONE|ACCOUNT)\]/g, '').replace(/[\s,;/&-]|dan|and/gi, '');
+  return rest === '' && /\[(?:IC|PHONE|ACCOUNT)\]/.test(value);
+}
+
+/** Capitalise the first letter (e.g. "tax notice" -> "Tax notice"); leaves the rest as the model wrote it. */
+export function capitalizeFirst(s: string): string {
+  return s ? s.charAt(0).toLocaleUpperCase() + s.slice(1) : s;
 }
 
 /**
@@ -63,8 +74,8 @@ export function parseAnalysis(raw: string, fallbackLang: 'ms' | 'en', now: Date 
   const urgency: Urgency = u === 'high' || u === 'medium' || u === 'low' ? u : 'medium';
   const lang = str(o.language).toLowerCase();
   return {
-    letter_type: str(o.letter_type) || '—',
-    sender: str(o.sender) || '—',
+    letter_type: capitalizeFirst(str(o.letter_type)) || '—',
+    sender: capitalizeFirst(str(o.sender)) || '—',
     summary,
     key_facts: toFacts(o.key_facts),
     deadline,
